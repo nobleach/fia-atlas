@@ -44,7 +44,7 @@ var ChapterComponent = React.createClass({
     }
 
     return (
-      <div className={activeClass} id="chapter1">
+      <div className={activeClass} id="chapter1" onClick={this.props.pick.bind(this, this.props.chapter)}>
         <img src={this.props.chapter.img} alt=""></img>
         <a onClick={this.handleBack} className="back" id="back-button">&lt; Back</a>
         <span className="title">
@@ -87,10 +87,10 @@ var TocComponent = React.createClass({
     var router = this.props.router;
     var pickChapter = this.pickChapter;
     var chapterNodes = this.props.chapters.map(function(chapter) {
-      return <ChapterComponent onClick={pickChapter(chapter)} chapter={chapter} key={chapter.href} ref={chapter.href} router={router} />;
+      return <ChapterComponent pick={pickChapter} chapter={chapter} key={chapter.href} ref={chapter.href} router={router} />;
     });
     return (
-      <div>
+      <div id="toc">
         {chapterNodes}
       </div>
     );
